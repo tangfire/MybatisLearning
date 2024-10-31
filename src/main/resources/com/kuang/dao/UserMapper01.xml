@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<!--        namespace-->
+<!--        namespace中的包名要和 Dao/mapper 接口的包名一致！-->
+<mapper namespace="com.kuang.dao.UserMapper01">
+<!--    方法二：结果集映射-->
+    <!--结果集映射-->
+    <resultMap id="UserMap" type="com.kuang.pojo01.User">
+        <!--column数据库中的字段，property实体类中的属性-->
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="pwd" property="password"/>
+    </resultMap>
+
+<!--    <select id="getUserById" parameterType="int" resultType="com.kuang.pojo01.User">-->
+<!--        select * from mybatis.user where id = #{id}-->
+<!--    </select>-->
+
+
+<!--    方法一:起别名-->
+<!--    <select id="getUserById" resultType="com.kuang.pojo01.User">-->
+<!--        select id,name,pwd as password from mybatis.user where id = #{id}-->
+<!--    </select>-->
+
+
+<!--    方法二：结果集映射-->
+    <select id="getUserById" resultMap="UserMap">
+        select * from mybatis.user where id = #{id}
+    </select>
+
+
+
+
+
+
+
+
+</mapper>

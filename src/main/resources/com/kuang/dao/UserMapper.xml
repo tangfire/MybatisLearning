@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<!--        namespace-->
+<!--        namespace中的包名要和 Dao/mapper 接口的包名一致！-->
+<mapper namespace="com.kuang.dao.UserMapper">
+
+
+
+
+    <select id="getUserById" parameterType="int" resultType="com.kuang.pojo.User">
+        select * from mybatis.user where id = #{id}
+    </select>
+
+<!--    增删改需要提交事务！-->
+
+    <!--对象中的属性，可以直接取出来-->
+    <insert id="addUser" parameterType="com.kuang.pojo.User">
+        insert into mybatis.user (id, name, pwd) values (#{id},#{name},#{pwd});
+    </insert>
+
+    <!--对象中的属性，可以直接取出来    传递map的key-->
+    <insert id="addUserMap" parameterType="map">
+        insert into mybatis.user (id, pwd) values (#{userid},#{passWord});
+    </insert>
+
+
+
+    <update id="updateUser" parameterType="com.kuang.pojo.User">
+        update mybatis.user set name=#{name},pwd=#{pwd}  where id = #{id} ;
+    </update>
+
+
+
+    <delete id="deleteUser" parameterType="int">
+        delete from mybatis.user where id = #{id};
+    </delete>
+
+
+
+    <select id="findUsersByName" parameterType="string" resultType="User">
+        SELECT * FROM user WHERE name LIKE CONCAT('%', #{name}, '%')
+    </select>
+
+
+
+
+</mapper>
