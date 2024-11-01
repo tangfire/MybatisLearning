@@ -40,6 +40,7 @@
     <!-- 类型别名配置 -->
     <typeAliases>
         <typeAlias type="com.kuang.pojo.User" alias="User"/>
+        <typeAlias type="com.kuang.pojo.Blog" alias="Blog"/>
     </typeAliases>
 
 
@@ -61,9 +62,14 @@
         </environment>
     </environments>
 
+
     <mappers>
+
         <package name="com.kuang.dao"></package>
     </mappers>
+
+
+
 
 
 

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.kuang.dao.BlogMapper">
+
+    <resultMap id="blog" type="com.kuang.pojo.Blog">
+        <!--column数据库中的字段，property实体类中的属性-->
+        <result column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="author" property="author"/>
+        <result column="create_time" property="createTime"/>
+        <result column="views" property="views"/>
+    </resultMap>
+
+
+
+    <insert id="addBlog" parameterType="blog">
+        insert into mybatis.blog (id, title, author,create_time,views) values (#{id},#{title},#{author},#{createTime},#{views});
+    </insert>
+
+<!--    if-->
+    <select id="queryBlogIF" parameterType="map" resultMap="blog">
+        select * from mybatis.blog where 1=1
+        <if test="title != null">
+            and title = #{title}
+        </if>
+        <if test="author != null">
+            and author = #{author}
+        </if>
+    </select>
+
+
+<!--    choose (when, otherwise)-->
+    <select id="queryBlogChoose" parameterType="map" resultMap="blog">
+        select * from mybatis.blog
+        <where>
+            <choose>
+                <when test="title != null">
+                    title = #{title}
+                </when>
+                <when test="author != null">
+                    and author = #{author}
+                </when>
+                <otherwise>
+                    and views = #{views}
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+
+    <update id="updateBlog" parameterType="map">
+        update mybatis.blog
+        <set>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="author != null">
+                author = #{author}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+
+
+
+
+
+</mapper>

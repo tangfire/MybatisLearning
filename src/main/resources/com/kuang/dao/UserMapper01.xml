@@ -34,9 +34,16 @@
     </select>
 
 
+    <!--//分页-->
+    <select id="getUserByLimit" parameterType="map" resultMap="UserMap">
+        select * from  mybatis.user limit #{startIndex},#{pageSize}
+    </select>
 
 
-
+    <!--分页2-->
+    <select id="getUserByRowBounds" resultMap="UserMap">
+        select * from  mybatis.user
+    </select>
 
 
 
