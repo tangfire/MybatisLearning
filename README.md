@@ -1,3 +1,14 @@
+# 参考文章
+
+
+[MyBatis-全面详解（学习总结）](https://blog.csdn.net/weixin_44207403/article/details/106735755)
+
+[Mybatis动态SQL（详细介绍）](https://blog.csdn.net/m0_74777020/article/details/132323477)
+
+[【MyBatis】如何使用“动态SQL”（超详解）](https://blog.csdn.net/weixin_44825912/article/details/130433302)
+
+
+
 # 导入maven依赖
 
 ```xml
@@ -857,4 +868,20 @@ example: MyTest03 getTeacher
 
 原因就是这句话:
 `当使用select *时，数据库返回的字段名称需要与<resultMap>或resultType中定义的属性名称完全匹配。如果不匹配，MyBatis不会报错，而是默默地留下null。通过指定每个列并使用as来重命名（如create_time as createTime），可以确保数据库字段和Java实体类属性之间的正确对应。`
+
+
+
+
+
+# 动态sql
+
+参考文章:
+
+[Mybatis动态SQL（详细介绍）](https://blog.csdn.net/m0_74777020/article/details/132323477)
+
+[【MyBatis】如何使用“动态SQL”（超详解）](https://blog.csdn.net/weixin_44825912/article/details/130433302)
+
+
+example: MyTest04
+
 

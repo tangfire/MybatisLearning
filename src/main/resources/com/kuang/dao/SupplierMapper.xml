@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.kuang.dao.SupplierMapper">
+
+
+    <select id="getSuppliersAll" resultType="com.kuang.pojo.Supplier" parameterType="Map">
+        select supCode,supName,supContact,supPhone,supFax,createdTime from t_supplier
+        where 1=1
+        <if test="supCode!=null and supCode!=''">
+            and supCode like #{supCode}
+        </if>
+        <if test="supName!=null and supName!=''">
+            and supName like #{supName}
+        </if>
+    </select>
+
+
+    <select id="getSuppliersAll01" resultType="com.kuang.pojo.Supplier" parameterType="Map">
+        select supCode,supName,supContact,supPhone,supFax,createdTime from t_supplier
+        <where>
+            <if test="supCode!=null and supCode!=''">
+                and supCode like #{supCode}
+            </if>
+            <if test="supName!=null and supName!=''">
+                and supName like #{supName}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="getSuppliersAll02" resultType="com.kuang.pojo.Supplier">
+        select supCode,supName,supContact,supPhone,supFax,createdTime from t_supplier
+        <where>
+            <choose>  <!--相当于Switch-->
+                <when test="supCode!=null and supCode!=''">  <!--相当于case-->
+                    and supCode like #{supCode}
+                </when>
+                <when test="supName!=null and supName!=''">  <!--相当于case-->
+                    and supName like #{supName}
+                </when>
+            </choose>
+        </where>
+    </select>
+
+    <!--批量新增-->
+    <insert id="insertManySupplier">
+        insert into t_supplier(supCode,supName) values
+        <foreach collection="Supplier" item="supplier" separator=",">
+            (#{supplier.supCode},#{supplier.supName})
+        </foreach>
+    </insert>
+
+
+    <!--批量删除-->
+    <delete id="deleteManySupplier">
+        delete from t_supplier where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <!--动态修改-->
+    <update id="UpdateManySupplier">
+        update t_supplier
+        <set>
+            <if test="supCode!=null and supCode!=''">
+                supCode=#{supCode},
+            </if>
+            <if test="supName!=null and supName!=''">
+                supName=#{supName},
+            </if>
+            <if test="supPhone!=null and supPhone!=''">
+                supPhone=#{supPhone},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--动态查询-->
+    <select id="getSuppliersAll03" resultType="com.kuang.pojo.Supplier">
+        select supCode,supName,supContact,supPhone,supFax,createdTime from t_supplier
+        <trim prefix="where" prefixOverrides="and|or" suffix=" LIMIT #{index},#{pageSize}">
+            <if test="supCode!=null and supCode!=''">
+                and supCode like #{supCode}
+            </if>
+            <if test="supName!=null and supName!=''">
+                and supName like #{supName}
+            </if>
+            <if test="supPhone!=null and supPhone!=''">
+                and supPhone like #{supPhone}
+            </if>
+        </trim>
+    </select>
+
+
+
+
+    <update id="UpdateManySupplier01">
+        update t_supplier
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+            <if test="supCode!=null and supCode!=''">
+                supCode=#{supCode},
+            </if>
+            <if test="supName!=null and supName!=''">
+                supName=#{supName},
+            </if>
+            <if test="supPhone!=null and supPhone!=''">
+                supPhone=#{supPhone},
+            </if>
+        </trim>
+    </update>
+
+</mapper>
