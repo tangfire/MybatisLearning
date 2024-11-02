@@ -3,6 +3,8 @@
 
 [MyBatis-全面详解（学习总结）](https://blog.csdn.net/weixin_44207403/article/details/106735755)
 
+[mybatis看这一篇就够了，简单全面一发入魂](https://blog.csdn.net/vcj1009784814/article/details/106391982)
+
 [Mybatis动态SQL（详细介绍）](https://blog.csdn.net/m0_74777020/article/details/132323477)
 
 [【MyBatis】如何使用“动态SQL”（超详解）](https://blog.csdn.net/weixin_44825912/article/details/130433302)
