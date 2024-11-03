@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace:Mapper接口的全路径,使其和Mapper对应-->
+<mapper namespace="com.kuang.dao.CStudentMapper01">
+
+    <!--    默认情况下，二级缓存机制是开启的。-->
+    <!--    只需要在对应的StudentMapper.xml文件中添加以下标签。用来表示”我"使用该二级缓存。-->
+    <cache/>
+
+    <resultMap id="StudentResultMap" type="com.kuang.cache_pojo.Student">
+        <id column="stu_id" property="stuId" />
+        <result column="stu_name" property="stuName" />
+        <result column="stu_age" property="stuAge" />
+        <result column="stu_salary" property="stuSalary" />
+        <result column="stu_birth" property="stuBirth" />
+        <result column="create_time" property="createTime" />
+        <result column="course_id" property="courseId" />
+    </resultMap>
+
+    <delete id="delete">
+        DELETE from c_Student where stu_id=#{id}
+    </delete>
+    <select id="queryStudentById" parameterType="integer" resultMap="StudentResultMap">
+        select * from c_Student where stu_id=#{id}
+    </select>
+</mapper>

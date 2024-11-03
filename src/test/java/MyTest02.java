@@ -29,11 +29,35 @@ public class MyTest02 {
     public void getStudent(){
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
-        List<Student> studentList = mapper.getStudent();
-//        List<Student> studentList = mapper.getStudent2();
+//        List<Student> studentList = mapper.getStudent();
+        List<Student> studentList = mapper.getStudent2();
         for (Student student : studentList) {
             System.out.println(student);
         }
+
+        sqlSession.close();
+    }
+
+
+
+//    测试一级缓存
+    @Test
+    public void level_1_cache(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+//        List<Student> studentList = mapper.getStudent();
+        List<Student> studentList = mapper.getStudent2();
+        for (Student student : studentList) {
+            System.out.println(student);
+        }
+
+        System.out.println("--------------------------------------------------------");
+
+        List<Student> studentList01 = mapper.getStudent2();
+        for (Student student : studentList01) {
+            System.out.println(student);
+        }
+
         sqlSession.close();
     }
 

@@ -33,7 +33,12 @@
 
     <settings>
         <setting name="logImpl" value="LOG4J"/>
+        <!--显示的开启全局缓存-->
+        <setting name="cacheEnabled" value="true"/>
+
     </settings>
+
+
 
 
 
@@ -65,7 +70,8 @@
 
     <mappers>
 
-        <package name="com.kuang.dao"></package>
+        <package name="com.kuang.dao"/>
+
     </mappers>
 
 

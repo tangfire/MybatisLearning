@@ -9,7 +9,7 @@
 
 [【MyBatis】如何使用“动态SQL”（超详解）](https://blog.csdn.net/weixin_44825912/article/details/130433302)
 
-
+[Mybatis中的缓存机制（一文带你弄懂）](https://blog.csdn.net/qq_51917627/article/details/132528306?)
 
 # 导入maven依赖
 
@@ -886,4 +886,16 @@ example: MyTest03 getTeacher
 
 example: MyTest04
 
+
+
+# 缓存
+
+参考文章:
+
+[Mybatis中的缓存机制（一文带你弄懂）](https://blog.csdn.net/qq_51917627/article/details/132528306?)
+
+example: 
+- MyTest05 一级缓存
+- MyTest06 二级缓存
+- MyTest07 MyBatis集成EhCache
 
